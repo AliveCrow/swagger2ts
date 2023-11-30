@@ -83,7 +83,11 @@ function getType(context) {
         }
         return previousValue
     }, ``)
-    return str ? `{${str}}` : ''
+
+    if(str.split(',').length > 1) {
+        return str ? `{${str}}` : ''
+    }
+    return str ? `${str.split(':')[1]}` : ''
 }
 
 function getOptions(context) {
@@ -114,7 +118,10 @@ function getOptions(context) {
 
         return previousValue + currentValue.split(':')[0]
     }, '')
-    return result ? `{${result}}` : '{}'
+    if(str.split(',').length > 1) {
+        return result ? `{${result}}` : '{}'
+    }
+    return result ? `${result}` : '{}'
 }
 
 function getRequestData(context) {
