@@ -18,6 +18,7 @@ function swagget2ts({baseURL= config.baseURL, dir= config.dir, template, modules
         try {
             const res = await axios.get(baseURL + module.url)
             const json = res.data
+            const basePath = res.data.basePath
             const tags = json.tags
             const paths = json.paths
             const definitions = json.definitions
@@ -51,6 +52,7 @@ function swagget2ts({baseURL= config.baseURL, dir= config.dir, template, modules
             // console.dir(paths, { depth: null })
             const api_tpl = Handlebars.compile(fs.readFileSync(tpl_path, 'utf-8'))
             const api_data = api_tpl({
+                basePath,
                 paths,
                 result
             })

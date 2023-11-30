@@ -2,6 +2,7 @@
 /* tslint:disable */
 import axios, {AxiosHeaders} from 'axios'
 
+
 //#region interface----------------------------------------------------------------
 {{#each result}}
 export interface {{#formatName this.name}}{{/formatName}} {
@@ -30,20 +31,18 @@ export interface ServerResponse<T> {
     *	@format
     */
     msg: string,
-    }
+}
 
 //endregion----------------------------------------------------------------
-
-
 {{#each paths}}
 {{#with @key as |outerKeyVar|}}
-{{#each ../this}}
+{{#each ../this as |outThis|}}
 /**
 *   {{summary}}
 */
 function {{operationId}}({{#getRequestData parameters}}{{/getRequestData}}) {
     return axios({
-        url: `{{#parseUrl outerKeyVar}}{{/parseUrl}}`,
+        url: `{{../../../this.basePath}}{{#parseUrl outerKeyVar}}{{/parseUrl}}`,
         method: '{{@key}}',
         {{#requestType @key}}{{/requestType}}: {{#getOptions parameters}}{{/getOptions}},
         headers
@@ -55,8 +54,8 @@ function {{operationId}}({{#getRequestData parameters}}{{/getRequestData}}) {
 
 export default {
 {{#each paths}}
-{{#each this}}
-    {{operationId}},
-{{/each}}
+    {{#each this}}
+        {{operationId}},
+    {{/each}}
 {{/each}}
 }
