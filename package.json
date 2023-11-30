@@ -1,5 +1,5 @@
 {
-  "name": "swagger2ts",
+  "name": "@gritwork/swagger2ts",
   "version": "1.0.0",
   "description": "将`swagger v2`的json转为指定的前端格式",
   "main": "index.js",

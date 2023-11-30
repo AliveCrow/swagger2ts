@@ -1,4 +1,4 @@
-# swagger2ts
+# @gritwork/swagger2ts
 
 将`swagger v2`的json转为指定的前端格式，仅支持v2版本
 
@@ -17,8 +17,8 @@ interface ModulesItem {
 ```
 ```node
 // index.js
-const {swagget2ts, registerHelper} = require('swagger2ts')
-// swagget2ts(config: Config, DEBUG: boolean)  DEBUG是否开启打印
+const {swagget2ts, registerHelper} = require('@gritwork/swagger2ts')
+// swagget2ts(config: Config, DEBUG?: boolean = false)  DEBUG是否开启打印
 // registerHelper用于注册handlebars的helper函数
 swagget2ts(config)
 ```
